@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: rate-your-store-api
+    env: ruby
+    plan: free
+    rootDir: rate-your-store-api  # 👈🏽 IMPORTANT: tell Render to go into this subfolder
+    buildCommand: |
+      bundle install
+      bundle exec rake db:migrate
+    startCommand: bundle exec rails server -p 3000
+    envVars:
+      - key: RAILS_ENV
+        value: production
+      - key: SECRET_KEY_BASE
+        generateValue: true
