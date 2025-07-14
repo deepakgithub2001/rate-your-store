@@ -1,0 +1,11 @@
+# React
+/rate-your-store-client/node_modules
+
+# Rails
+/rate-your-store-api/log/*
+/rate-your-store-api/tmp/*
+/rate-your-store-api/vendor/bundle
+
+# OS/Editor
+*.DS_Store
+.env
