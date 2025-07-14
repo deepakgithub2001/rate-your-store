@@ -3,15 +3,18 @@ services:
     name: rate-your-store-api
     env: ruby
     plan: free
-    buildCommand: bundle install && bundle exec rake db:migrate
-    startCommand: bundle exec rails server
+    rootDir: rate-your-store-api   # 👈 This tells Render to enter this folder first
+    buildCommand: |
+      bundle install
+      bundle exec rake db:migrate
+    startCommand: bundle exec rails server -p 3000
     envVars:
+      - key: RAILS_ENV
+        value: production
       - key: DATABASE_URL
         fromDatabase:
           name: rate-your-store-db
           property: connectionString
-      - key: RAILS_ENV
-        value: production
       - key: SECRET_KEY_BASE
         generateValue: true
 
