@@ -78,7 +78,7 @@ export default function NormalUserDashboard() {
   return (
     <>
       <Navbar />
-      <div className="max-w-5xl mx-auto p-4 mt-4">
+      <div className="max-w-5xl mx-auto p-4 mt-20">
         <h1 className="text-3xl font-bold mb-6 text-center">Stores</h1>
         {message && (
           <p className="text-green-600 font-semibold text-center mb-4">

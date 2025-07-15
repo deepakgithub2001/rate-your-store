@@ -11,12 +11,11 @@ export default function LoginPage() {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
-  const { login, setUser } = useAuth(); // ✅ added setUser
+  const { login, setUser } = useAuth();
 
   useEffect(() => {
-    // Optional: force logout when visiting login page
     api.delete("/users/sign_out", { withCredentials: true }).catch(() => {});
-    setUser(null); // ✅ logout user in context
+    setUser(null);
   }, []);
 
   const handleLogin = async (e) => {
@@ -42,9 +41,8 @@ export default function LoginPage() {
         return;
       }
 
-      login(user); // ✅ save user in context
+      login(user);
 
-      // ✅ redirect based on role
       if (user.role === "system_admin") {
         navigate("/admin/dashboard");
       } else if (user.role === "store_owner") {
@@ -60,9 +58,9 @@ export default function LoginPage() {
   };
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      <div className="flex items-center justify-center mt-5 md:my-16">
+      <main className="flex-grow flex items-center justify-center px-4 mt-10 md:mt-5">
         <form
           onSubmit={handleLogin}
           className="bg-white p-8 rounded shadow-xl w-full max-w-md"
@@ -100,8 +98,8 @@ export default function LoginPage() {
             Login
           </button>
         </form>
-      </div>
+      </main>
       <Footer />
-    </>
+    </div>
   );
 }

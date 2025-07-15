@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
@@ -161,7 +160,6 @@ const SignupPage = () => {
           </button>
         </form>
       </div>
-      <Footer />
     </>
   );
 };

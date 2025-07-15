@@ -16,7 +16,7 @@ const Navbar = () => {
         {/* Left Side - Logo */}
         <Link to="/" className="no-underline" onClick={closeMenu}>
           <h1 className="text-2xl font-bold flex items-center">
-            RateYourStore <FaShoppingCart className="text-3xl ml-2" />
+            RateYourStore <FaShoppingCart className="text-3xl" />
           </h1>
         </Link>
 
