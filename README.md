@@ -68,7 +68,7 @@ Built with a clean interface and powerful role-based access, it ensures a smooth
 ## 🖼 Screenshots
 
 ### 🔹 Home page
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/4ba80289-c7b5-4d4b-abcc-17a4b4b14224" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/232c7703-90b8-4a66-9d8f-94d3b5317ee6" />
 
 ### 🔹 About Page
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/039e467c-185b-47a4-9f57-e7eb61cd34ee" />
