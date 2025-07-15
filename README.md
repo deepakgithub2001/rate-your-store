@@ -76,15 +76,11 @@ Built with a clean interface and powerful role-based access, it ensures a smooth
 ### 🔹 Admin Dashboard
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/1aea6135-2d57-455f-acde-37f70a1b4b62" />
 
-### 🔹 Normal User Dashboard
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/f86935a1-8705-410f-8ab1-42145ac4f0f1" />
-
 ### 🔹 Store Owner Dashboard
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/1c7a33f6-4c70-4c63-b6a6-207fe0e86a5a" />
 
-### 🔹 Store Owner Dashboard
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/1c7a33f6-4c70-4c63-b6a6-207fe0e86a5a" />
-
+### 🔹 User Dashboard
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/0d6bf4c0-98a6-4b9a-8d14-183055615296" />
 
 ---
 
