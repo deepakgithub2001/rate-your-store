@@ -7,18 +7,20 @@ class StoresController < ApplicationController
   stores = current_user.role == 'store_owner' ? current_user.stores : Store.all
 
   response = stores.map do |store|
+    avg_rating = store.ratings.average(:rating)
     {
       id: store.id,
       name: store.name,
       address: store.address,
       description: store.description,
-      average_rating: store.ratings.average(:rating)&.round(2),
+      average_rating: avg_rating ? avg_rating.round(2) : 0,
       my_rating: store.ratings.find_by(user_id: current_user.id)&.rating
     }
   end
 
   render json: response
-  end
+end
+
 
 
   def show
