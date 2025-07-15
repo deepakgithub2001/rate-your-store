@@ -11,16 +11,18 @@ export default function NormalUserDashboard() {
   const [comments, setComments] = useState({}); // storeId => comment
   const [message, setMessage] = useState("");
 
-  useEffect(() => {
-    const fetchStores = async () => {
-      try {
-        const res = await api.get("/stores", { withCredentials: true });
-        setStores(res.data);
-      } catch (err) {
-        console.error("Error fetching stores:", err);
-      }
-    };
+  // ✅ Reusable function to fetch stores
+  const fetchStores = async () => {
+    try {
+      const res = await api.get("/stores", { withCredentials: true });
+      setStores(res.data);
+    } catch (err) {
+      console.error("Error fetching stores:", err);
+    }
+  };
 
+  // Fetch stores on mount
+  useEffect(() => {
     fetchStores();
   }, []);
 
@@ -54,6 +56,7 @@ export default function NormalUserDashboard() {
       );
 
       setMessage("Rating submitted!");
+      fetchStores(); // ✅ Refresh stores after rating
       setTimeout(() => setMessage(""), 2000);
     } catch (err) {
       console.error("Rating submission failed:", err);
@@ -98,8 +101,8 @@ export default function NormalUserDashboard() {
 
               <div className="mb-2">
                 <strong>Average Rating:</strong>{" "}
-                {store.average_rating !== null
-                  ? renderStars(Math.round(store.average_rating))
+                {typeof store.average_rating === "number"
+                  ? store.average_rating.toFixed(1)
                   : "Not rated yet"}
               </div>
 
