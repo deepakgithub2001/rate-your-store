@@ -72,7 +72,7 @@ const SignupPage = () => {
       });
 
       setSuccess("Signup successful! Redirecting to login...");
-      setTimeout(() => navigate("/login"), 1500); // ✅ updated path
+      setTimeout(() => navigate("/login"), 1500);
     } catch (err) {
       setError("Signup failed. Email may already be taken.");
     }
@@ -81,10 +81,10 @@ const SignupPage = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
         <form
           onSubmit={handleSubmit}
-          className="bg-white p-5 rounded shadow-md w-full max-w-md mt-12"
+          className="bg-white p-5 rounded shadow-md w-full max-w-md mt-12 md:mt-20"
         >
           <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
 
