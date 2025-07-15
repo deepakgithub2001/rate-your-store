@@ -1,93 +1,122 @@
 import { Link } from "react-router-dom";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 import { useAuth } from "../context/AuthContext";
+import { useState } from "react";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
 
   return (
-    <nav className="bg-blue-500 text-white px-6 py-4 flex justify-between items-center shadow fixed w-full top-0 z-50">
-      {/* Left Side - Logo */}
-      <Link to="/" className="no-underline">
-        <h1 className="text-2xl font-bold flex items-center">
-          RateYourStore <FaShoppingCart className="text-3xl" />
-        </h1>
-      </Link>
-
-      {/* Right Side - Navigation */}
-      <div className="space-x-3 font-semibold flex items-center">
-        <Link
-          to="/about"
-          className="hover:bg-blue-600 px-3 py-1 rounded transition"
-        >
-          About
+    <nav className="bg-blue-500 text-white px-6 py-4 shadow fixed w-full top-0 z-50">
+      <div className="flex justify-between items-center">
+        {/* Left Side - Logo */}
+        <Link to="/" className="no-underline" onClick={closeMenu}>
+          <h1 className="text-2xl font-bold flex items-center">
+            RateYourStore <FaShoppingCart className="text-3xl ml-2" />
+          </h1>
         </Link>
 
-        {user ? (
-          <>
-            {/* Role-based dashboard links */}
-            {user.role === "system_admin" && (
-              <>
+        {/* Hamburger - Mobile only */}
+        <button
+          className="md:hidden text-white text-2xl"
+          onClick={toggleMenu}
+          aria-label="Toggle Menu"
+        >
+          {isOpen ? <FaTimes /> : <FaBars />}
+        </button>
+
+        {/* Navigation Links */}
+        <div
+          className={`${
+            isOpen ? "block" : "hidden"
+          } absolute md:static top-16 left-0 w-full md:w-auto bg-blue-500 md:bg-transparent md:flex space-y-3 md:space-y-0 md:space-x-3 px-6 py-4 md:py-0 font-semibold md:items-center`}
+        >
+          <Link
+            to="/about"
+            onClick={closeMenu}
+            className="block hover:bg-blue-600 px-3 py-1 rounded transition"
+          >
+            About
+          </Link>
+
+          {user ? (
+            <>
+              {user.role === "system_admin" && (
+                <>
+                  <Link
+                    to="/admin/dashboard"
+                    onClick={closeMenu}
+                    className="block hover:bg-blue-600 px-3 py-1 rounded transition"
+                  >
+                    Dashboard
+                  </Link>
+                  <Link
+                    to="/admin/users"
+                    onClick={closeMenu}
+                    className="block hover:bg-blue-600 px-3 py-1 rounded transition"
+                  >
+                    Manage Users
+                  </Link>
+                  <Link
+                    to="/admin/ratings"
+                    onClick={closeMenu}
+                    className="block hover:bg-blue-600 px-3 py-1 rounded transition"
+                  >
+                    Manage Ratings
+                  </Link>
+                </>
+              )}
+              {user.role === "store_owner" && (
                 <Link
-                  to="/admin/dashboard"
-                  className="hover:bg-blue-600 px-3 py-1 rounded transition"
+                  to="/store-owner/dashboard"
+                  onClick={closeMenu}
+                  className="block hover:bg-blue-600 px-3 py-1 rounded transition"
                 >
                   Dashboard
                 </Link>
+              )}
+              {user.role === "normal_user" && (
                 <Link
-                  to="/admin/users"
-                  className="hover:bg-blue-600 px-3 py-1 rounded transition"
+                  to="/user/dashboard"
+                  onClick={closeMenu}
+                  className="block hover:bg-blue-600 px-3 py-1 rounded transition"
                 >
-                  Manage Users
+                  Dashboard
                 </Link>
-                <Link
-                  to="/admin/ratings"
-                  className="hover:bg-blue-600 px-3 py-1 rounded transition"
-                >
-                  Manage Ratings
-                </Link>
-              </>
-            )}
-            {user.role === "store_owner" && (
-              <Link
-                to="/store-owner/dashboard"
-                className="hover:bg-blue-600 px-3 py-1 rounded transition"
+              )}
+              <button
+                onClick={() => {
+                  logout();
+                  closeMenu();
+                }}
+                className="block bg-red-500 hover:bg-red-600 px-3 py-1 rounded transition"
               >
-                Dashboard
-              </Link>
-            )}
-            {user.role === "normal_user" && (
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
               <Link
-                to="/user/dashboard"
-                className="hover:bg-blue-600 px-3 py-1 rounded transition"
+                to="/login"
+                onClick={closeMenu}
+                className="block hover:bg-blue-600 px-3 py-1 rounded transition"
               >
-                Dashboard
+                Login
               </Link>
-            )}
-
-            <button
-              onClick={logout}
-              className="bg-red-500 hover:bg-red-600 px-3 py-1 rounded transition"
-            >
-              Logout
-            </button>
-          </>
-        ) : (
-          <>
-            <Link
-              to="/login"
-              className="hover:bg-blue-600 px-3 py-1 rounded transition"
-            >
-              Login
-            </Link>
-            <Link
-              to="/signup"
-              className="hover:bg-blue-600 px-3 py-1 rounded transition"
-            >
-              Signup
-            </Link>
-          </>
-        )}
+              <Link
+                to="/signup"
+                onClick={closeMenu}
+                className="block hover:bg-blue-600 px-3 py-1 rounded transition"
+              >
+                Signup
+              </Link>
+            </>
+          )}
+        </div>
       </div>
     </nav>
   );
